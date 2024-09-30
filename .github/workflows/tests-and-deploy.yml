@@ -55,4 +55,6 @@ jobs:
       env:
         DB_CONNECTION: mysql
         DB_DATABASE: dynamic_db
+
+    - name: Running tests
       run: php artisan test
