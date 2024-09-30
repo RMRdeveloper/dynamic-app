@@ -47,11 +47,9 @@ jobs:
         
       - name: Clear cache, views, configurations and routes
         run: php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:cache
-        
+
       - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
+        run: php artisan test
         env:
           DB_CONNECTION: mysql
           DB_DATABASE: dynamic_db
-
-    - name: Running tests
-      run: php artisan test
