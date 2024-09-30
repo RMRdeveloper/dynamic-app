@@ -16,13 +16,13 @@ jobs:
       mysql:
         image: mysql:9.0.1
         env:
-          MYSQL_USER: ${{ secrets.DB_USER }}
+          DB_USER: ${{ secrets.DB_USER }}
           MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.DATABASE_NAME }}
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h 127.0.0.1 -P 3306 -u $MYSQL_USER --password=$MYSQL_ROOT_PASSWORD"
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -P 3306 -u $DB_USER --password=$MYSQL_ROOT_PASSWORD"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
