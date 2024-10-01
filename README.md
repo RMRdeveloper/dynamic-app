@@ -1,66 +1,41 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+**Prerequisites**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+* Node.js (version 16 or higher)
+* PHP (version 8.0 or higher)
+* Composer (version 2 or higher)
+* Vite (version 5 or higher)
+* Laravel (version 11 or higher)
+* Docker and Docker Compose if using Linux
 
-## About Laravel
+**Installation**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Clone the project repository to your local machine.
+2. Install Node.js dependencies by running the command `npm install` in the root of the project.
+3. Install PHP dependencies by running the command `composer install` in the root of the project.
+4. Create a `.env` file in the root of the project and configure the environment variables as needed, using `.env.example` as a guide.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Development**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Run the command `npm run dev` in the root of the project to start the Vite development server (this will enable real-time UI changes).
+2. Run the command `php artisan serve` in the root of the project to start the Laravel development server.
+3. Open a browser and go to `http://localhost:<PORT>` to see the application running.
+4. To run unit tests, run the command `php artisan test` in the root of the project.
 
-## Learning Laravel
+**Production**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Run the command `php artisan migrate` in the root of the project to apply the database migrations.
+2. Run the command `npm run build` in the root of the project to compile the application for production.
+3. Set up the web server to serve the application from the `public` folder.
+4. Access the application through the configured domain.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Deploy with Docker**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Run the command `docker compose up` in the root of the project.
+2. On Linux, if the Laravel container does not pick up the `DB_HOST` environment variable from `docker-compose.yml`, set the container name as the `DB_HOST` value in your `.env` file.
 
-## Laravel Sponsors
+**Notes**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* Make sure to configure the environment variables in the `.env` file as needed for the application.
+* The application uses Laravel as the PHP framework and Vite as the build tool and development server.
+* The application uses a MySQL database; make sure to configure the database credentials in the `.env` file.
+* If you make changes to the source code for production, it may be necessary to recreate the container image. To force this, run `docker compose up --build` on your server or add it to the relevant `Dockerfile`. 
