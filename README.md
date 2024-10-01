@@ -7,6 +7,7 @@
 * Composer (version 2 or higher)
 * Vite (version 5 or higher)
 * Laravel (version 11 or higher)
+* MySQL (version 9.0 or higher)
 * Docker and Docker Compose if using Linux
 
 **Installation**
