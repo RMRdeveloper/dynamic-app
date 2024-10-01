@@ -10,10 +10,6 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
-    resources:
-      limits:
-        cpus: "0.4"
-        memory: "512M"
   
   web:
     build:
@@ -27,10 +23,6 @@ services:
       - "80:8000"
     depends_on:
       - db
-    resources:
-      limits:
-        cpus: "0.4"
-        memory: "512M"
 
 volumes:
   db_data:
