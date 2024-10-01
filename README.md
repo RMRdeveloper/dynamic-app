@@ -1,3 +1,5 @@
+# Task Manager with React, Inertia and Laravel
+
 **Prerequisites**
 
 * Node.js (version 16 or higher)
