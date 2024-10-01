@@ -53,7 +53,7 @@ export default function Dashboard() {
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 flex justify-between items-center">
                             <h1 className="font-bold">Your tasks</h1>
-                            <button onClick={() => setShowCreateTaskModal(true)} className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded">
+                            <button onClick={setShowCreateTaskModal.bind(this, true)} className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded">
                                 + Add task
                             </button>
                         </div>

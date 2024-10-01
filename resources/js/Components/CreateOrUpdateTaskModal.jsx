@@ -1,11 +1,11 @@
 import { useForm } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
-import { MdErrorOutline } from "react-icons/md";
+import { MdErrorOutline } from 'react-icons/md';
 
 export default function CreateOrUpdateTaskModal(props) {
 
-    const [errors, setErrors] = useState({});
+    const [validationErrors, setValidationErrors] = useState({});
 
     const { data, setData, submit, reset: resetForm } = useForm({
         id: '',
@@ -18,7 +18,7 @@ export default function CreateOrUpdateTaskModal(props) {
     const handleCloseModal = () => {
         props.onCloseModal();
         resetForm();
-        setErrors({});
+        setValidationErrors({});
     }
 
     const handleSubmit = (event) => {
@@ -33,7 +33,7 @@ export default function CreateOrUpdateTaskModal(props) {
 
             submit(method, url, {
                 onSuccess: (page) => {
-                    setErrors(page.props.flash.statusMessage);
+                    setValidationErrors(page.props.flash.statusMessage);
 
                     if (page.props.flash.statusCode === 200) {
                         handleCloseModal();
@@ -46,11 +46,11 @@ export default function CreateOrUpdateTaskModal(props) {
         }
     }
 
-    const getError = (inputKey) => {
-        if (errors && errors[inputKey]) {
+    const getValidationMessage = (inputKey) => {
+        if (validationErrors && validationErrors[inputKey]) {
             return (
-                <p className={`text-sm font-medium text-red-700 my-0 flex items-center gap-1 ${errors[inputKey].at(0) ? 'block' : ' hidden'}`}>
-                    <MdErrorOutline /> <span>{errors[inputKey].at(0)}</span>
+                <p className={`text-sm font-medium text-red-700 my-0 flex items-center gap-1 ${validationErrors[inputKey].at(0) ? 'block' : ' hidden'}`}>
+                    <MdErrorOutline /> <span>{validationErrors[inputKey].at(0)}</span>
                 </p>
             )
         }
@@ -82,12 +82,12 @@ export default function CreateOrUpdateTaskModal(props) {
                             <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
                             <input defaultValue={data.title} onChange={(e) => setData('title', e.target.value)} type="text" name="title" id="title" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                         </div>
-                        {getError('title')}
+                        {getValidationMessage('title')}
                         <div>
                             <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
                             <textarea value={data.description} onChange={(e) => setData('description', e.target.value)} name="description" id="description" className="resize-none mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                         </div>
-                        {getError('description')}
+                        {getValidationMessage('description')}
                         <div>
                             <label htmlFor="status" className="block text-sm font-medium text-gray-700">Status</label>
                             <select onChange={(e) => setData('status', e.target.value)} value={data.status} name="status" id="status" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -96,12 +96,12 @@ export default function CreateOrUpdateTaskModal(props) {
                                 <option value="completed">Completed</option>
                             </select>
                         </div>
-                        {getError('status')}
+                        {getValidationMessage('status')}
                         <div>
                             <label htmlFor="due_date" className="block text-sm font-medium text-gray-700">Due date</label>
                             <input defaultValue={data.due_date} onChange={(e) => setData('due_date', e.target.value)} type="date" name="due_date" id="due_date" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                         </div>
-                        {getError('due_date')}
+                        {getValidationMessage('due_date')}
                         <div className="flex justify-end gap-2">
                             <button onClick={handleCloseModal} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2">Cancel</button>
                             <button type="submit" className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
