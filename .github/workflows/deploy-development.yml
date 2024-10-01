@@ -68,9 +68,21 @@ jobs:
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
         run: php artisan test
-        # Config databse connection for tests
+        # Config database connection for tests
         env:
           DB_CONNECTION: mysql
           DB_DATABASE: ${{ secrets.DATABASE_NAME }}
           DB_USERNAME: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          
+      - name: Deploy on AWS EC2
+        env:
+          AWS_SSH_USERNAME: ${{ secrets.AWS_SSH_USERNAME }}
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
+        run: |
+          echo "$AWS_SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${AWS_SSH_USERNAME}@${AWS_HOST} '
+              # Now we have got the access of EC2 and we will start the deploy .
+              cd ~/dynamic-app && git pull && docker-compose up --build
+              '
